@@ -10,6 +10,8 @@ services:
       MYSQL_ROOT_PASSWORD: res1234*/
     ports:
       - "3306:3306"
+    volumes:
+        - test_vol:/var/lib/mysql
     networks:
       - mysqlNet
 
@@ -28,7 +30,10 @@ services:
       DB_PASSWORD: res1234*/
     networks:
       - mysqlNet
+    entrypoint: ["java", "-jar", "app.jar"]
 
 networks:
   mysqlNet:
     driver: bridge
+volumes:
+  test_vol:
