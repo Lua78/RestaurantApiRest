@@ -1,12 +1,15 @@
 package com.api.demo.model;
 
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 @Embeddable
 public class MenuDinner implements Serializable {
+    @NotEmpty(message = "Id menu is require")
     private int menu_id;
+    @NotEmpty(message = "Id dinner is require")
     private int dinner_id;
 
     public MenuDinner(int dinner_id, int menu_id) {

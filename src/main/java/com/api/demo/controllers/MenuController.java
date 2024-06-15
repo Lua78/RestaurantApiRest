@@ -2,8 +2,10 @@ package com.api.demo.controllers;
 
 import com.api.demo.model.Dinner;
 import com.api.demo.model.Menu;
+import com.api.demo.model.Reserve;
 import com.api.demo.repository.MenuRepository;
 import com.api.demo.repository.ReserveRepository;
+import com.api.demo.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -35,6 +37,19 @@ public class MenuController {
             return new ResponseEntity<>(dinners, HttpStatus.OK);
         }catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping
+    public ResponseEntity<String> createMenu(@RequestBody Menu menu) {
+        String valString = Utils.validateObject(Menu.class, menu);
+        if (!valString.equals("Ok")) {
+            return new ResponseEntity<>(valString, HttpStatus.BAD_REQUEST);
+        }
+        try {
+            menuRepo.save(menu);
+            return new ResponseEntity<>("Menu creado exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al crear la menu: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

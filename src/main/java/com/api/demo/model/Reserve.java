@@ -1,5 +1,8 @@
 package com.api.demo.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Date;
 
@@ -8,13 +11,16 @@ public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_reserve;
+    @NotBlank(message = "Costumer name is require")
     private String costumer_name;
+    @Positive(message = "Customer number must be greater than 0")
     private long costumer_number;
-
     @Temporal(TemporalType.TIMESTAMP)
+    @NotNull(message = "Date and time is require")
     private Date date_reserve;
     private boolean state = true;
     private int id_menu;
+
 
     public void setCostumer_number(long costumer_number) {
         this.costumer_number = costumer_number;

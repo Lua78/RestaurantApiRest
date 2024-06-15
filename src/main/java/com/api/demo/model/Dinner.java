@@ -4,14 +4,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Dinner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_dinner;
+    @NotEmpty(message = "Name es require")
     private String name;
+    @NotEmpty(message = "Description is require")
     private String description;
+    @NotEmpty(message = "Price is require")
     private double price;
     private boolean active;
 
