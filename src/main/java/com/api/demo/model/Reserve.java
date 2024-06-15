@@ -61,7 +61,7 @@ public class Reserve {
         this.date_reserve = date_reserve;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 

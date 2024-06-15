@@ -1,37 +1,56 @@
 package com.api.demo.model;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.io.Serializable;
 
-@Embeddable
+@Entity
 public class MenuDinner implements Serializable {
-    @NotEmpty(message = "Id menu is require")
-    private int menu_id;
-    @NotEmpty(message = "Id dinner is require")
-    private int dinner_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public MenuDinner(int dinner_id, int menu_id) {
-        this.dinner_id = dinner_id;
-        this.menu_id = menu_id;
+    @NotNull(message = "Id menu is require")
+    @Positive(message = "Id menu is not valid")
+    private int id_menu;
+    @NotNull(message = "Id dinner is require")
+    @Positive(message = "Id dinner is not valid")
+    private int id_dinner;
+
+
+
+    public MenuDinner(int id_dinner, int id_menu) {
+        this.id_dinner = id_dinner;
+        this.id_menu = id_menu;
     }
     public  MenuDinner(){}
 
 
     public int getMenu_id() {
-        return menu_id;
+        return id_menu;
     }
 
-    public void setMenu_id(int menu_id) {
-        this.menu_id = menu_id;
+    public void setMenu_id(int id_menu) {
+        this.id_menu = id_menu;
     }
 
     public int getDinner_id() {
-        return dinner_id;
+        return id_dinner;
     }
 
-    public void setDinner_id(int dinner_id) {
-        this.dinner_id = dinner_id;
+    public void setDinner_id(int id_dinner) {
+        this.id_dinner = id_dinner;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

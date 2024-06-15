@@ -4,8 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Dinner {
@@ -16,7 +16,7 @@ public class Dinner {
     private String name;
     @NotEmpty(message = "Description is require")
     private String description;
-    @NotEmpty(message = "Price is require")
+    @Positive(message = "Price must be greater than 0")
     private double price;
     private boolean active;
 

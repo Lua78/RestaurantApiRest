@@ -16,17 +16,7 @@ public class Menu {
     private String name;
     @Positive(message = "Price is must be greater than 0")
     private double price;
-    private boolean state;
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    private boolean active;
+    private boolean state = true;
 
     public Menu(String name, double price, boolean state) {
         this.name = name;
@@ -57,7 +47,7 @@ public class Menu {
         this.price = price;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 
